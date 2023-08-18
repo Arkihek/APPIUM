@@ -9,6 +9,8 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+import utilities.Driver;
+import utilities.ReusableMethods;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -16,8 +18,11 @@ import java.util.concurrent.TimeUnit;
 
 public class kiwi {
 
-    AndroidDriver<AndroidElement> driver;
+    AndroidDriver<AndroidElement> driver = Driver.getAndroidDriver();
 
+    TouchAction action = new TouchAction<>(driver);
+
+    /*
     @BeforeTest
     public void setUp() throws MalformedURLException {
 
@@ -36,6 +41,7 @@ public class kiwi {
         driver = new AndroidDriver<AndroidElement>(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
     }
+     */
 
     @Test
     public void kiwiAppTest() throws InterruptedException {
@@ -49,13 +55,13 @@ public class kiwi {
         continueButton.click();
 
         // ardinda gelecek olan 3 adimada yesil butona basilarak devam edilir
-        //540.1700
-        TouchAction action = new TouchAction<>(driver);
+
         Thread.sleep(1000);
         for (int i = 0; i < 3; i++) {
-            action.press(PointOption.point(540,1700)).release().perform();
-            Thread.sleep(1500);
+            ReusableMethods.koordinatTiklama(540,1700,1000);
         }
+
+
 
 
         // Trip type,one way olarak secilir
