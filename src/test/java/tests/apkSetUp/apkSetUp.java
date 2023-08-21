@@ -19,7 +19,7 @@ public class apkSetUp {
         final String platformVersion = "10.0";
         final String platformName = "Android";
         final String automationName = "UiAutomator2";
-        final String apkUrl = "C:\\Users\\ihsan\\IdeaProjects\\APPIUM_T116\\Apps\\Kiwi.com - Book Cheap Flights_2023.14.0_Apkpure (1).apk";
+        final String apkUrl = "C:\\Users\\ihsan\\IdeaProjects\\APPIUM_T116\\Apps\\all-currency-converter-3-9-0 (1).apk";
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, deviceName); // Cihaza verdigimiz isim
