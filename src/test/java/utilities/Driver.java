@@ -53,6 +53,42 @@ public class Driver {
         return appiumDriver;
     }
 
+    public static AndroidDriver getDriver()  {
+        URL appiumServerURL = null;
+        try {
+            appiumServerURL = new URL("http:127.0.0.1:4723/wd/hub");
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        if (appiumDriver == null) {
+
+            DesiredCapabilities caps =new DesiredCapabilities();
+            caps.setCapability(MobileCapabilityType.DEVICE_NAME, "Redmi Note 10");
+            caps.setCapability(MobileCapabilityType.PLATFORM_VERSION, "12.0");
+            caps.setCapability(MobileCapabilityType.PLATFORM_NAME, PLATFORM);
+            caps.setCapability(MobileCapabilityType.AUTOMATION_NAME, OTOMASYON_ISMI);
+            caps.setCapability("appPackage","com.smartwho.SmartAllCurrencyConverter"); // Hangi uygulama uzerinde calismak istiyorsak apk infodan o uygulamanin degerini aliyoruz
+            caps.setCapability("appActivity","com.smartwho.SmartAllCurrencyConverter.CurrencyConverter"); // Uygulamayi actiktan sonra hangi sayfadan baslayacagimizi orn; Anasayfa, Profil, vb
+            caps.setCapability(MobileCapabilityType.NO_RESET,false);
+            // true uygulama sifirlanmiyor onceki adimlari muhafaza ediyor
+            //false ise her test baslangicinda uygulamayi sifirliyor ve uygulama en bastan basliyor
+
+            if (ConfigReader.getProperty("platformName").equals("Android")) {
+
+                assert appiumServerURL != null;
+                appiumDriver = new AndroidDriver<>(appiumServerURL,caps);
+                appiumDriver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+
+            }else {
+
+                throw new UnsupportedOperationException("Invalid Platform Name ");
+
+            }
+        }
+
+        return appiumDriver;
+    }
+
     public static void quitAppiumDriver(){
 
         if (appiumDriver != null) {

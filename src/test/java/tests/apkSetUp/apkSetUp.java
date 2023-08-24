@@ -15,8 +15,8 @@ public class apkSetUp {
     @Test
     public void apkSetup() throws MalformedURLException {
 
-        final String deviceName = "PIXEL";
-        final String platformVersion = "10.0";
+        final String deviceName = "Redmi Note 10";
+        final String platformVersion = "12.0";
         final String platformName = "Android";
         final String automationName = "UiAutomator2";
         final String apkUrl = "C:\\Users\\ihsan\\IdeaProjects\\APPIUM_T116\\Apps\\all-currency-converter-3-9-0 (1).apk";
